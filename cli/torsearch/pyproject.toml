@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "torsearch"
+version = "0.1.0"
+description = "Tor Seach helps you find torrents from various source like ThePirateBay, KickAss and YTS. Combined with a torrent client it can also help you download those torrent files."
+authors = ["Shrexy"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+qbittorrent = "^0.1.6"
+beautifulsoup4 = "^4.11.1"
+clipboard = "^0.0.4"
+inquirer = "^2.10.1"
+python-qbittorrent = "^0.4.3"
+selenium = "^4.6.0"
+tqdm = "^4.64.1"
+typer = "^0.7.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
