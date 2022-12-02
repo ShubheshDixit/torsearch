@@ -18,5 +18,6 @@ pyinstaller --noconfirm --onefile --console --icon "./assets/torsearch_logo_192.
 ```
 
 ## Download Support
-Download [qBittorrent](https://www.qbittorrent.org/download.php) client and allow remote connections.  
- 
+Download [qBittorrent](https://www.qbittorrent.org/download.php) client and allow remote connections (Web User Interface).
+
+![TorSearch](cli/assets/qbittorrent_setings.exe.png)
