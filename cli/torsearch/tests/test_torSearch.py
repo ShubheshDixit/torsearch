@@ -1,6 +1,6 @@
 from typer.testing import CliRunner
 
-from torSearch import __app_name__, __version__, cli
+from torsearch import __app_name__, __version__, cli
 
 runner = CliRunner()
 
