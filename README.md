@@ -1,4 +1,4 @@
-![TorSearch](cli/assets/torsearch_header_big.png)
+[![TorSearch](cli/assets/torsearch_header_big.png)](https://github.com/ShubheshDixit/torsearch)
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 # torsearch
 
@@ -20,4 +20,4 @@ pyinstaller --noconfirm --onefile --console --icon "./assets/torsearch_logo_192.
 ## Download Support
 Download [qBittorrent](https://www.qbittorrent.org/download.php) client and allow remote connections (Web User Interface).
 
-![TorSearch](cli/assets/qbittorrent_setings.exe.png)
+[![qBittorrent](cli/assets/qbittorrent_setings.exe.png)](https://www.qbittorrent.org/download.php) 
