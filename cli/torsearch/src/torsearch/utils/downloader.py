@@ -1,5 +1,7 @@
 from qbittorrent import Client
 import typer
+from typing import Optional
+
 from torsearch.utils.config import load_config
 
 
@@ -67,7 +69,7 @@ class QBitDownloader:
         return f"{b:.2f}Y{suffix}"
 
 
-qbit_downloader: None | QBitDownloader = None
+qbit_downloader: Optional[QBitDownloader] = None
 
 
 def get_qbit_downloader():

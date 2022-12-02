@@ -23,7 +23,7 @@ def progressBar(iterable, prefix='Searching: ', suffix='', decimals=1, length=30
     def printProgressBar(iteration):
         if total > 0:
             percent = ("{0:." + str(decimals) + "f}").format(100 *
-                                                            (iteration / float(total)))
+                                                             (iteration / float(total)))
             filledLength = int(length * iteration // total)
             bar = fill * filledLength + '-' * (length - filledLength)
             typer.secho(
@@ -34,7 +34,7 @@ def progressBar(iterable, prefix='Searching: ', suffix='', decimals=1, length=30
     for i, item in enumerate(iterable):
         yield item
         printProgressBar(i + 1)
-    # Print New Line on Complete 
+    # Print New Line on Complete
     print()
 
 
@@ -55,7 +55,7 @@ class Extractor:
                 _ = input("Reload and type done: ")
                 browser.get(search_url)
             html = browser.page_source
-            soup = BeautifulSoup(html, 'lxml')
+            soup = BeautifulSoup(html, 'html.parser')
 
             for li in progressBar(soup.findAll('li', {'id': 'st'})):
                 name = li.find('span', {'class': 'item-title'}).find('a').text
@@ -86,7 +86,7 @@ class Extractor:
                 browser.get(search_url)
             html = browser.page_source
             time.sleep(0.5)
-            soup = BeautifulSoup(html, 'lxml')
+            soup = BeautifulSoup(html, 'html.parser')
             for a in progressBar(soup.findAll('a', {'class': 'cellMainLink'})):
                 try:
                     name = a.text
@@ -95,7 +95,7 @@ class Extractor:
                     browser.get(base_url+url)
                     time.sleep(1)
                     html = browser.page_source
-                    s = BeautifulSoup(html, 'lxml')
+                    s = BeautifulSoup(html, 'html.parser')
                     for a in s.findAll('a', {'title': 'Magnet link'}):
                         magnetURL = a['href']
                         break
@@ -122,7 +122,7 @@ class Extractor:
                 search_url = f'https://yts.proxyninja.org/browse-movies/{query}/all/all/0/latest/0/all?page={i}'
             browser.get(search_url)
             html = browser.page_source
-            soup = BeautifulSoup(html, 'lxml')
+            soup = BeautifulSoup(html, 'html.parser')
             if len(soup.findAll('a', {'class': 'browse-movie-link'})) > 0:
                 for a in progressBar(soup.findAll('a', {'class': 'browse-movie-link'})):
                     try:
@@ -133,7 +133,7 @@ class Extractor:
                         time.sleep(0.5)
                         browser.get(link)
                         mv_res = browser.page_source
-                        s = BeautifulSoup(mv_res, 'lxml')
+                        s = BeautifulSoup(mv_res, 'html.parser')
                         desc = s.find('div', {'id': 'synopsis'}).find(
                             'p', {'class': 'hidden-xs'}).text
                         info = s.find('div', {'id': 'movie-info'})
@@ -207,7 +207,7 @@ class Extractor:
             except:
                 pass
             html = browser.page_source
-            soup = BeautifulSoup(html, 'lxml')
+            soup = BeautifulSoup(html, 'html.parser')
             if len(soup.findAll('a', {'class': 'browse-movie-link'})) > 0:
                 for a in progressBar(soup.findAll('a', {'class': 'browse-movie-link'})):
                     try:
@@ -218,7 +218,7 @@ class Extractor:
                         time.sleep(0.5)
                         browser.get(link)
                         mv_res = browser.page_source
-                        s = BeautifulSoup(mv_res, 'lxml')
+                        s = BeautifulSoup(mv_res, 'html.parser')
                         desc = s.find('div', {'id': 'synopsis'}).find(
                             'p', {'class': 'hidden-xs'}).text
                         info = s.find('div', {'id': 'movie-info'})
