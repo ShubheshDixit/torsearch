@@ -52,7 +52,7 @@ def search(query: str = typer.Argument(None), src: int = typer.Option(
         1, "--source", "-s", help="The Source to search query from."), page: int = typer.Option(
             1, "--page", "-p", help="Number of pages to search for.")) -> None:
     typer.echo(
-        f"Searching for {query} from {SOURCES[src]} in {page} {'pages' if page > 1 else 'page'} ...")
+        f"Searching for '{query}' from {SOURCES[src]} in {page} {'pages' if page > 1 else 'page'} ...")
     handler = get_handler()
     handler.search(query, src, page)
     typer.echo(f"Done!")
