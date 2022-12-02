@@ -1,3 +1,4 @@
+import os
 from typing import Optional
 
 import typer
@@ -7,6 +8,8 @@ from torsearch import (__app_name__, __version__)
 from torsearch import torSearch
 
 from torsearch.constants import SOURCES
+
+from torsearch.utils.config import create_config_file, load_config
 
 app = typer.Typer()
 
@@ -79,12 +82,14 @@ def list_last() -> None:
     typer.echo(f"Done!")
 
 
-@app.command(name="list", help="List downloads")
-def list_downloads(type=typer.Argument("current")) -> None:
-    # typer.echo(f"Listing last search results...")
-    handler = get_handler()
-    if type == "all":
-        handler.show_downloads()
+@app.command(name="config", help="Change config for default download path")
+def list_downloads(path=typer.Option(None, "--path", help="the new default download path")) -> None:
+    if path is not None:
+        if os.path.isdir(path):
+            create_config_file(path)
+            typer.echo(f"Changed default download path to {path}")
+        else:
+            typer.echo(f"Given Path [{path}] is not a valid directory")
     else:
-        handler.show_current()
-    typer.echo(f"Done!")
+        config = load_config()
+        typer.echo(f"Current config: {config}")

@@ -1,5 +1,7 @@
 from qbittorrent import Client
 import typer
+from torsearch.utils.config import load_config
+
 
 class QBitDownloader:
     def __init__(self, host="127.0.0.1", port="8080", username="admin", password="adminadmin"):
@@ -11,18 +13,21 @@ class QBitDownloader:
         self.qb.login(self.username, self.password)
         self.old_torrents = [torrent['hash'] for torrent in self.qb.torrents()]
         self.torrents = []
-        self.DOWNLOAD_PATH = 'E:/Downloads/Videos/'
+        self.DOWNLOAD_PATH = self.get_download_path()  # 'E:/Downloads/Videos/'
+
+    def get_download_path(self):
+        config = load_config()
+        return config['default_download_path']
 
     def download_magnet_link(self, magnet_uri: str):
-        data = self.qb.download_from_link(
+        self.qb.download_from_link(
             magnet_uri, savepath=self.DOWNLOAD_PATH)
-        print(data)
         for torrent in self.qb.torrents():
             if torrent['hash'] not in self.old_torrents:
                 self.torrents.append(torrent['hash'])
         self.old_torrents = [torrent['hash'] for torrent in self.qb.torrents()]
         self.show_downloads()
-        
+
     def show_progress_bar(self, percent: int, width: int = 20):
         """
         Display a progress bar
@@ -36,7 +41,8 @@ class QBitDownloader:
         for torrent in self.qb.torrents():
             if (torrent['hash'] in self.torrents or all) or (current and torrent['progress'] < 1):
                 print()
-                typer.secho(f"Torrent name: {torrent['name']}", fg=typer.colors.BRIGHT_CYAN)
+                typer.secho(
+                    f"Torrent name: {torrent['name']}", fg=typer.colors.BRIGHT_CYAN)
                 print("Hash:", torrent["hash"])
                 print("Seeds:", torrent["num_seeds"])
                 print("File size:", self.get_size_format(
@@ -63,13 +69,15 @@ class QBitDownloader:
 
 qbit_downloader: None | QBitDownloader = None
 
+
 def get_qbit_downloader():
     global qbit_downloader
     if qbit_downloader is None:
         try:
             qbit_downloader = QBitDownloader()
         except Exception as e:
-            typer.secho(f"🔥[ERROR] Could not connect to QBit Torrent: {e}", fg=typer.colors.RED)
+            typer.secho(
+                f"🔥[ERROR] Could not connect to QBit Torrent: {e}", fg=typer.colors.RED)
             # print("🔥[ERROR] Could not connect to QBit")
             # input("Kindly open QBit and retry by pressing [ENTER]")
             # get_qbit_downloader()
