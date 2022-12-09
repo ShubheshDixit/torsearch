@@ -14,25 +14,25 @@ A tool designed to help in finding torrent files on the internet gracefully. Can
 For Windows:
 
 ```bash
- $ pyinstaller --noconfirm --onefile --console --icon "./assets/torsearch_logo_192.ico" --name "torsearch" --add-data "./torsearch/src/torsearch;."  "./torsearch/src/torsearch/__main__.py"
+ $ pyinstaller --noconfirm --onefile --console --icon "./assets/torsearch_logo_192.ico" --name "tors" --add-data "./torsearch/src/tors;."  "./torsearch/src/tors/__main__.py"
 ```
 
 For Linux:
 
 ```bash
- $ pyinstaller --noconfirm --onefile --console --icon "./assets/torsearch_logo_192.png" --name "torsearch" --add-data "./torsearch/src/torsearch:."  "./torsearch/src/torsearch/__main__.py"
+ $ pyinstaller --noconfirm --onefile --console --icon "./assets/torsearch_logo_192.png" --name "tors" --add-data "./torsearch/src/tors;."  "./torsearch/src/tors/__main__.py"
 ```
 
 For Mac:
 
 ```bash
- $ pyinstaller --noconfirm --onefile --console --icon "./assets/torsearch_logo_apple.icns" --name "torsearch" --osx-bundle-identifier 'com.torsearch.cli' --add-data "./torsearch/src/torsearch:." --clean "./torsearch/src/torsearch/__main__.py"
+ $ pyinstaller --noconfirm --onefile --console --icon "./assets/torsearch_logo_apple.icns" --name "tors" --osx-bundle-identifier 'com.torsearch.tors' --add-data "./torsearch/src/tors:." --clean "./torsearch/src/tors/__main__.py"
 ```
 
 ## Usage
 
 ```bash
- $ torsearch search [SEARCH_TERM] -s [SOURCE_NUMBER] -p [PAGE_NUMBER]
+ $ tors search [SEARCH_TERM] -s [SOURCE_NUMBER] -p [PAGE_NUMBER]
 ```
 
 ## Download Support
